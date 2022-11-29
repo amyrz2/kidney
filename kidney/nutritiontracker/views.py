@@ -10,8 +10,23 @@ def indexPageView(request) :
 def loginPageView(request) :
     return render(request, 'nutritionTracker/login.html')
 
-def dailyNutritionView(request) :
-    return render(request, 'nutritionTracker/dailyBreakdown.html')
+def personalInformationPageView(request) :
+    return render(request, 'nutritionTracker/personalInformation.html')
 
-def logEntryPageView(request) :
-    return render(request, 'nutritionTracker/logEntry.html')
+def createaccountPageView(request) :
+    return render(request, 'nutritionTracker/createaccount.html')
+
+def homePageView(request) :
+    return render(request, 'nutritionTracker/homepage.html')
+
+def journalPageView(request) :
+    return render(request, 'nutritionTracker/journal.html')
+
+def addmealPageView(request) :
+    return render(request, 'nutritionTracker/addmeal.html')
+
+def dashBoardPageView(request) :
+    return render(request, 'nutritionTracker/dashboard.html')
+
+def addAPPageView(request) :
+    return render(request, 'nutritionTracker/addAP.html')
