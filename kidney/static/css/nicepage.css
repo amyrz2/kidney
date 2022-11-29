@@ -38494,6 +38494,32 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 }
 
+.u-section-1 .u-sheet-1 {
+  min-height: 192px;
+}
+
+.u-section-1 .u-text-1 {
+  margin: 40px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 77px;
+  width: 655px;
+  margin: 26px auto 40px;
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-form-1 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+}
+
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }
  /*end-variables base-font-size*/
