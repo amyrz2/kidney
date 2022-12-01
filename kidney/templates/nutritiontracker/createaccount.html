@@ -1,7 +1,7 @@
 {% extends 'prelogin/base.html' %}
 {% load static %}
 {% block content %}
-{% if 'message'%}
+{% if 'message' == 'This user already exists'%}
     <span style='color:red'>User Already Exists!</span>
 {% endif %}
 <form action="/createNewUser/" method="post">
