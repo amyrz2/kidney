@@ -2,7 +2,11 @@
 {% load static %}
 {% block content %}
 
-<p>create account page</p>
+<form action="/createNewUser/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
 
 {% endblock %}
 

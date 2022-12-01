@@ -63,14 +63,15 @@
 }
 </style>
 {% endblock %}
-
+<p>{{failed}}</p>
 
 
 
 {% block content %}
 <body >
-    <form action="/action_page.php">
-      <h1>Login</h1>
+    <form action="/loginAccount" method="post">
+      {% csrf_token %}
+      <h1 class="">Login</h1>
       <div class="formcontainer">
       <hr/>
       <div class="container">
@@ -79,13 +80,17 @@
         <label for="psw"><strong>Password</strong></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
       </div>
+      {% if failed == True %}
+        <span style='color:red'>Incorrect Username or Password</span>
+      {% endif %}
       <button type="submit">Login</button>
-      <div class="container" style="background-color: #eee">
-        <label style="padding-left: 15px">
-        <input type="checkbox"  checked="checked" name="remember"> Remember me
-        </label>
-        <span class="psw"><a href="#"> Forgot password?</a></span>
-      </div>
+      <br><br>
+      <span><a href="#"> Forgot password?</a></span>
+      <br><br>
+      <span>New user?</span>
+      <br>
+      <span style="color:gray"><a href={%url "createNewUser"%}>Create Account</a></span>
+
     </form>
   </body>
 <br><br><br><br><br><br><br><br><br><br>
