@@ -1,0 +1,14 @@
+{% extends 'prelogin/base.html' %}
+{% load static %}
+{% block content %}
+{% if 'message'%}
+    <span style='color:red'>User Already Exists!</span>
+{% endif %}
+<form action="/createNewUser/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
+

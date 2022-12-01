@@ -1,0 +1,31 @@
+{% extends 'postlogin/base.html' %}
+{% load static %}
+{% block content %}
+
+<br><br>
+<section class="u-align-center u-clearfix u-section-1" id="sec-abd3">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h4 class="u-text u-text-default u-text-1">Add Accountability Partner</h4>
+      <div class="u-form u-form-1">
+        <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="email">
+          <div class="u-form-group u-form-name u-label-none">
+            <label for="name-ef64" class="u-label">Name</label>
+            <input type="text" placeholder="Name" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+          </div>
+          <div class="u-form-email u-form-group u-label-none">
+            <label for="email-ef64" class="u-label">Email</label>
+            <input type="email" placeholder="Email" id="email-ef64" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+          </div>
+          <div class="u-form-group u-form-submit">
+            <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
+            <input type="submit" value="submit" class="u-form-control-hidden">
+          </div>
+          <div class="u-form-send-message u-form-send-success">#FormSendSuccess</div>
+          <div class="u-form-send-error u-form-send-message">#FormSendError</div>
+          <input type="hidden" name="formServices" value="e4344e3e3bf48c8fb5c02e9667e69a6b">
+        </form>
+      </div>
+    </div>
+</section>
+
+{% endblock %}
