@@ -61,13 +61,15 @@ def CreateNewUser(request):
                 user.save()
                 return HttpResponseRedirect('/login')
             except IntegrityError:
+                print('duplicate')
                 form = NewUserForm()
-                context = {'message':'This user already exists','form':form}
+                context = {'message':"This user already exists",'form':form}
                 return render(request,'nutritionTracker/createaccount.html',context)
        
     else:
+        print('here')
         form = NewUserForm()
-    return render(request, 'nutritionTracker/createaccount.html', {'form': form})
+        return render(request, 'nutritionTracker/createaccount.html', {'message':'none','form': form})
 
 
 def indexPageView(request) :
