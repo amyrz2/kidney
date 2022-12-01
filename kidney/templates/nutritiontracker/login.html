@@ -10,7 +10,7 @@
   <div class="u-clearfix u-sheet u-sheet-1">
     <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Login</h1>
     <div class="u-form u-login-control u-form-1">
-      <form action="/loginAccount" method="post" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+      <form action="/loginAccount/" method="post" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
         {% csrf_token %}
         <div class="u-form-group u-form-name u-label-top">
           <label for="uname" class="u-label">Username *</label>
@@ -18,7 +18,7 @@
         </div>
         <div class="u-form-group u-form-password u-label-top">
           <label for="psw" class="u-label">Password *</label>
-          <input type="text" placeholder="Enter your Password" id="psw" name="psw" class="u-border-grey-30 u-input u-input-rectangle u-input-2" required="" spellcheck="false">
+          <input type="password" placeholder="Enter your Password" id="psw" name="psw" class="u-border-grey-30 u-input u-input-rectangle u-input-2" required="" spellcheck="false">
         </div>
         
         {% if failed == True %}
@@ -34,6 +34,7 @@
     </div>
     <a href={%url "createNewUser"%} class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-2">Sign Up Now</a>
     <p class="u-text u-text-default u-text-2">Don't Have An Account?</p>
+    <span style="color:gray"><a href={%url "createNewUser"%}>Create Account</a></span>
   </div>
 </section>
 
