@@ -6,6 +6,7 @@ from django.template import RequestContext, Context
 from datetime import datetime
 from .forms import NewUserForm
 from django.contrib.auth import authenticate, login
+from django.db import IntegrityError
 
 #Functioning, logs user in
 def loginAccount(request):
@@ -21,13 +22,12 @@ def loginAccount(request):
         
     else:
         context = {'failed':True}
-        print('here')
         return render(request, 'nutritionTracker/login.html',context)
         # Return an 'invalid login' error message.
 
 #Check to see if the browser contains a login cookie    
 def checkLogin(request,route):
-    if request.COOKIES.get('loggedIn'):
+    if request.COOKIES['loggedIn']:
         print('good')
         return render(request, route)
     else:
@@ -55,11 +55,16 @@ def CreateNewUser(request):
         form = NewUserForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            userData = form.cleaned_data
-            print(form.cleaned_data['password'])
-            user = User.objects.create_user(username=userData['username'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'])
-            user.save()
-            return HttpResponseRedirect('/login')
+            try:
+                userData = form.cleaned_data
+                user = User.objects.create_user(username=userData['username'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'])
+                user.save()
+                return HttpResponseRedirect('/login')
+            except IntegrityError:
+                form = NewUserForm()
+                context = {'message':'This user already exists','form':form}
+                return render(request,'nutritionTracker/createaccount.html',context)
+       
     else:
         form = NewUserForm()
     return render(request, 'nutritionTracker/createaccount.html', {'form': form})
@@ -67,17 +72,25 @@ def CreateNewUser(request):
 
 def indexPageView(request) :
     response = render(request, 'nutritiontracker/index.html') 
-    
     return response
 
 def loginPageView(request) :
-    #if 'username' in request.COOKIES:
-        #if request.COOKIES['validated'] == 'logged in':
-            #return render(request, 'nutritionTracker/dashboard.html')
+    if 'loggedIn' in request.COOKIES:
+        if request.COOKIES['loggedIn'] == 'True':
+            return render(request, 'nutritionTracker/dashboard.html')
     #else:
     return render(request, 'nutritionTracker/login.html')
 
-
+#logs user out and sends user to the login page
+def logout(request):
+    response = HttpResponseRedirect('/login')
+    if ('loggedIn' in request.COOKIES) & (request.COOKIES['loggedIn'] == 'True') :
+        #return render(request, 'nutritionTracker/dashboard.html')
+        response = HttpResponseRedirect('/login')
+        response.set_cookie('loggedIn',False)
+        return response
+    else:
+        return response
 
 def createaccountPageView(request) :
     return render(request, 'nutritionTracker/createaccount.html')

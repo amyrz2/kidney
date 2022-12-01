@@ -11,9 +11,6 @@ urlpatterns = [
     path("addmeal/", views.addmealPageView, name="addmeal"),
     path("addAP/", views.addAPPageView, name="addAP"),
     path("createNewUser/", views.CreateNewUser, name="createNewUser"),
-    path("loginAccount",views.loginAccount, name='loginAccount')
+    path("loginAccount/",views.loginAccount, name='loginAccount'),
+    path("logout/", views.logout, name='logout')
 ]    
-
-
-#Ignore the line below for now
-#path('<int:pk>/', views.DetailView.as_view(), name='detail'),
