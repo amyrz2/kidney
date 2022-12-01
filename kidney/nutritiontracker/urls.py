@@ -11,7 +11,9 @@ urlpatterns = [
     path("addmeal/", views.addmealPageView, name="addmeal"),
     path("addAP/", views.addAPPageView, name="addAP"),
     path("createNewUser/", views.CreateNewUser, name="createNewUser"),
-    path("loginAccount",views.loginAccount, name='loginAccount')
+    path("contactsupport/", views.ContactSupport, name="contactsupport"),
+    path("loginAccount/",views.loginAccount, name='loginAccount'),
+    path("addpi/",views.addPersonalInfo, name='addpi')
 ]    
 
 

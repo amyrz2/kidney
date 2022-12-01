@@ -77,7 +77,12 @@ def loginPageView(request) :
     #else:
     return render(request, 'nutritionTracker/login.html')
 
+def ContactSupport(request) :
+    return render(request, 'nutritionTracker/contactsupport.html')
 
+
+def addPersonalInfo(request) :
+    return render(request, 'nutritionTracker/addpi.html')
 
 def createaccountPageView(request) :
     return render(request, 'nutritionTracker/createaccount.html')

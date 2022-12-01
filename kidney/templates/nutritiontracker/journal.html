@@ -1,7 +1,66 @@
-{% extends 'postlogin/base.html' %}
-{% load static %}
+{% extends 'partials/base.html' %}
+{% block title %} Journal {% endblock %}
+{% block link %}<link rel="stylesheet" href="../../static/css/journal.css" media="screen">{% endblock %}
+
 {% block content %}
 
-<p>journal page</p>
+<section class="u-align-center u-clearfix u-section-1" id="sec-eadb">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h1 class="u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1">Journal</h1>
+      <div class="u-form u-form-1">
+        <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" style="padding: 10px" source="email" name="form">
+          <div class="u-form-date u-form-group u-label-left u-form-group-1">
+            <label for="date-6903" class="u-label">Date</label>
+            <input type="date" placeholder="MM/DD/YYYY" id="date-6903" name="date" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+          </div>
+          <div class="u-form-group u-form-submit u-label-left">
+            <label class="u-label u-label-2"></label>
+            <input type="submit" value="submit" class="u-form-control-hidden">
+            <div class="u-align-left u-btn-submit-container">
+              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">Submit</a>
+            </div>
+          </div>
+          <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+          <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+          <input type="hidden" value="" name="recaptchaResponse">
+          <input type="hidden" name="formServices" value="2b34fdb62d8d867ebe2afe7522e86fe8">
+        </form>
+      </div>
+      <div class="u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+          <div class="u-container-style u-list-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-container-layout-1">
+              <h4 class="u-align-left u-custom-font u-font-roboto-slab u-text u-text-default u-text-palette-2-light-1 u-text-2">Breakfast</h4>
+              <p class="u-text u-text-custom-color-3 u-text-default u-text-3">Sample text.</p>
+            </div>
+          </div>
+          <div class="u-container-style u-list-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-container-layout-2">
+              <h4 class="u-align-left u-custom-font u-font-roboto-slab u-text u-text-default u-text-palette-2-light-1 u-text-4">Lunch</h4>
+              <p class="u-text u-text-custom-color-3 u-text-default u-text-5">Sample text.&nbsp;</p>
+            </div>
+          </div>
+          <div class="u-container-style u-list-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-container-layout-3">
+              <h4 class="u-align-left u-custom-font u-font-roboto-slab u-text u-text-default u-text-palette-2-light-1 u-text-6">Dinner</h4>
+              <p class="u-text u-text-custom-color-3 u-text-default u-text-7">Sample text.&nbsp;</p>
+            </div>
+          </div>
+          <div class="u-container-style u-list-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-container-layout-4">
+              <h4 class="u-align-left u-custom-font u-font-roboto-slab u-text u-text-default u-text-palette-2-light-1 u-text-8">Snack(s)</h4>
+              <p class="u-text u-text-custom-color-3 u-text-default u-text-9">Sample text.&nbsp;</p>
+            </div>
+          </div>
+          <div class="u-container-style u-list-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-container-layout-5">
+              <h4 class="u-align-left u-custom-font u-font-roboto-slab u-text u-text-default u-text-palette-2-light-1 u-text-10">Beverage(s)</h4>
+              <p class="u-text u-text-custom-color-3 u-text-default u-text-11">Sample text.&nbsp;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 {% endblock %}
