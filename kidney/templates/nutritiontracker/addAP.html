@@ -1,31 +1,56 @@
-{% extends 'postlogin/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'partials/base.html' %}
+{% block title %} Add AP {% endblock %}
+{% block link %}<link rel="stylesheet" href="../../static/css/addAP.css" media="screen">{% endblock %}
 
-<br><br>
-<section class="u-align-center u-clearfix u-section-1" id="sec-abd3">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <h4 class="u-text u-text-default u-text-1">Add Accountability Partner</h4>
-      <div class="u-form u-form-1">
-        <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="email">
-          <div class="u-form-group u-form-name u-label-none">
-            <label for="name-ef64" class="u-label">Name</label>
-            <input type="text" placeholder="Name" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+{% block content %}
+<br>
+<section class="u-clearfix u-section-1" id="sec-9854">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Add Accountability Partner&nbsp;</h1>
+    <div class="u-form u-form-1">
+      <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+        <div class="u-form-group u-form-group-1">
+          <label for="text-862b" class="u-label">First Name</label>
+          <input type="text" placeholder="Enter their first name" id="text-862b" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" spellcheck="false" required="required">
+        </div>
+        <div class="u-form-group u-form-group-2">
+          <label for="text-c43a" class="u-label">Last Name</label>
+          <input type="text" placeholder="Enter their last name" id="text-c43a" name="text-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+        </div>
+        <div class="u-form-email u-form-group">
+          <label for="email-e469" class="u-label">Email</label>
+          <input type="email" placeholder="Enter their valid email address" id="email-e469" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+        </div>
+        <div class="u-form-group u-form-select u-form-group-4">
+          <label for="select-4b0a" class="u-label">Relationship to You</label>
+          <div class="u-form-select-wrapper">
+            <select id="select-4b0a" name="Relationship" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+              <option value="Parent">Parent</option>
+              <option value="Spouse">Spouse</option>
+              <option value="Sibling">Sibling</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+            </select>
+            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
           </div>
-          <div class="u-form-email u-form-group u-label-none">
-            <label for="email-ef64" class="u-label">Email</label>
-            <input type="email" placeholder="Email" id="email-ef64" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
-          </div>
-          <div class="u-form-group u-form-submit">
-            <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-            <input type="submit" value="submit" class="u-form-control-hidden">
-          </div>
-          <div class="u-form-send-message u-form-send-success">#FormSendSuccess</div>
-          <div class="u-form-send-error u-form-send-message">#FormSendError</div>
-          <input type="hidden" name="formServices" value="e4344e3e3bf48c8fb5c02e9667e69a6b">
-        </form>
-      </div>
+          <br>
+        </div>
+        
+        <div class="u-align-left u-form-group u-form-submit">
+          <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-1">Submit</a>
+          <input type="submit" value="submit" class="u-form-control-hidden">
+        </div>
+        <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+        <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+        <input type="hidden" value="" name="recaptchaResponse">
+        <input type="hidden" name="formServices" value="">
+      </form>
     </div>
+  </div>
+  <br><br><br>
 </section>
+    
+
 
 {% endblock %}

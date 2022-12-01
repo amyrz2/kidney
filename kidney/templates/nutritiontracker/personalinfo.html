@@ -1,5 +1,8 @@
 {% extends 'postlogin/base.html' %}
-{% load static %}
+{% extends 'partials/base.html' %}
+{% block title %} Login {% endblock %}
+{% block link %}<link rel="stylesheet" href="../../static/css/personalinfo.css" media="screen">{% endblock %}
+
 {% block content %}
 {% load crispy_forms_tags %}
 

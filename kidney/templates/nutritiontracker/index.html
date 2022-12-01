@@ -1,145 +1,90 @@
-{% extends 'prelogin/base.html' %}
+{% extends 'partials/base.html' %}
+{% block title %} Home {% endblock %}
+{% block link %} <link rel="stylesheet" href="../../static/css/index.css" media="screen"> {% endblock %}
 {% comment %} Make If statement: if login then prelogin/base.html else postlogin/base.html {% endcomment %}
-
-
 
 {% block content %}
 
-    <section class="u-align-center u-clearfix u-valign-middle-lg u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs u-section-1" id="carousel_e5cf">
-      <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-align-left u-container-style u-layout-cell u-size-24-lg u-size-24-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
-              <div class="u-container-layout u-valign-middle u-container-layout-1">
-                <h6 class="u-text u-text-1">welcome to</h6>
-                <h2 class="u-text u-text-2">
-                  <span style="font-weight: 700;"> Kidney Tracker</span>
-                </h2>
-                <p class="u-text u-text-3">Image from <a href="https://www.freepik.com/photos/woman" class="u-active-none u-border-1 u-border-active-palette-1-base u-border-grey-75 u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-link u-button-style u-hover-none u-none u-radius-0 u-text-body-color u-top-left-radius-0 u-top-right-radius-0 u-btn-1" target="_blank">Freepik</a>
-                </p>
-                <a href="https://nicepage.com/website-design" class="u-active-palette-1-base u-align-center u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-5 u-text-active-white u-text-hover-white u-btn-2">Track my nutrition</a>
-              </div>
+<section class="u-clearfix u-custom-color-5 u-section-1" id="sec-3e54">
+  <img src="../../static/images/vegetables.jpeg" class="u-align-left u-expanded-width u-image u-image-1" data-image-width="800" data-image-height="533">
+  <div class="u-align-left u-container-style u-group u-radius-50 u-shape-round u-similar-fill u-white u-group-1">
+    <div class="u-container-layout u-padding-12 u-container-layout-1">
+      <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Happy Kidney</h1>
+      <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-2" spellcheck="false">Tracking Meals One Day at a Time</h1>
+      <a href={%url 'login'%} class="u-active-palette-2-dark-1 u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-2 u-palette-2-light-1 u-radius-50 u-btn-1"> My Nutrition</a>
+      <div class="u-carousel u-expanded-width u-gallery u-gallery-slider u-layout-carousel u-lightbox u-no-transition u-show-text-always u-gallery-1" id="carousel-52d2" data-interval="5000" data-u-ride="carousel">
+        <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
+          <li data-u-target="#carousel-52d2" data-u-slide-to="0" class="u-active u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          <li data-u-target="#carousel-52d2" data-u-slide-to="1" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          <li data-u-target="#carousel-52d2" data-u-slide-to="2" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+        </ol>
+        <div class="u-carousel-inner u-gallery-inner" role="listbox">
+          <div class="u-active u-carousel-item u-gallery-item u-carousel-item-1">
+            <div class="u-back-slide" data-image-width="228" data-image-height="154">
+              <img class="u-back-image u-expanded" src="../../static/images/Screenshot2022-11-30at4.22.21PM.png" alt="">
             </div>
-            <div class="u-align-left u-container-style u-image u-image-default u-layout-cell u-size-36-lg u-size-36-xl u-size-60-md u-size-60-sm u-size-60-xs u-image-1" data-image-width="1280" data-image-height="853">
-              <div class="u-container-layout u-container-layout-2"></div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-1">
+              <h2 class="u-custom-font u-font-lobster u-gallery-heading u-subtitle" style="font-size: 1.5rem;"></h2>
+              <p class="u-custom-font u-font-titillium-web u-gallery-text" style="">“Life is not living, but living in health.” – Martial</p>
             </div>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-2" data-image-width="228" data-image-height="154">
+            <div class="u-back-slide">
+              <img class="u-back-image u-expanded" src="../../static/images/Screenshot2022-11-30at4.22.21PM.png" alt="">
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-2">
+              <h2 class="u-custom-font u-font-lobster u-gallery-heading u-subtitle" style="font-size: 1.5rem;"></h2>
+              <p class="u-custom-font u-font-titillium-web u-gallery-text" style="">“The way you think, the way you behave, the way you eat, can influence your life by 30 to 50 years.” – Deepak Chopra</p>
+            </div>
+            <style data-mode="XL" data-visited="true"></style>
+            <style data-mode="LG" data-visited="true"></style>
+            <style data-mode="MD"></style>
+            <style data-mode="SM"></style>
+            <style data-mode="XS"></style>
+          </div>
+          <div class="u-carousel-item u-gallery-item u-carousel-item-3" data-image-width="228" data-image-height="154">
+            <div class="u-back-slide">
+              <img class="u-back-image u-expanded" src="../../static/images/Screenshot2022-11-30at4.22.21PM.png" alt="">
+            </div>
+            <div class="u-align-center u-over-slide u-shading u-valign-top u-over-slide-3">
+              <h2 class="u-custom-font u-font-lobster u-gallery-heading u-subtitle" style="font-size: 1.5rem;"></h2>
+              <p class="u-custom-font u-font-titillium-web u-gallery-text">“The first wealth is health.” – Ralph Waldo Emerson</p>
+            </div>
+            <style data-mode="XL"></style>
+            <style data-mode="LG"></style>
+            <style data-mode="MD"></style>
+            <style data-mode="SM"></style>
+            <style data-mode="XS"></style>
           </div>
         </div>
+        <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-1" href="#carousel-52d2" role="button" data-u-slide="prev">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+          </span>
+          <span class="sr-only">
+            <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+          </span>
+        </a>
+        <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-2" href="#carousel-52d2" role="button" data-u-slide="next">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+          </span>
+          <span class="sr-only">
+            <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+          </span>
+        </a>
       </div>
-      <div class="u-layout-grid u-list u-list-1">
-        <div class="u-repeater u-repeater-1">
-          <div class="u-align-center u-container-style u-custom-color-1 u-list-item u-radius-10 u-repeater-item u-shape-round u-list-item-1">
-            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="../../static/images/3209174-c8f55d34.png" alt=""></span>
-              <h4 class="u-text u-text-4">Diabetes</h4>
-              <p class="u-text u-text-5">Sample text. Click to select the text box.</p>
-              <a href="https://nicepage.com/html-templates" class="u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-none u-radius-0 u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-3 u-top-left-radius-0 u-top-right-radius-0 u-btn-3">more</a>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-custom-color-1 u-list-item u-radius-10 u-repeater-item u-shape-round u-video-cover u-list-item-2">
-            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4"><span class="u-file-icon u-icon u-text-white u-icon-2"><img src="../../static/images/6903475-4f2950c7.png" alt=""></span>
-              <h4 class="u-text u-text-6">kidney disease</h4>
-              <p class="u-text u-text-7">Sample text. Click to select the text box.</p>
-              <a href="https://nicepage.site" class="u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-none u-radius-0 u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-3 u-top-left-radius-0 u-top-right-radius-0 u-btn-4">more</a>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-custom-color-1 u-list-item u-radius-10 u-repeater-item u-shape-round u-video-cover u-list-item-3">
-            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-file-icon u-icon u-text-white u-icon-3"><img src="../../static/images/3389938-07a9e38b.png" alt=""></span>
-              <h4 class="u-text u-text-8">high blood pressure</h4>
-              <p class="u-text u-text-9">Sample text. Click to select the text box.</p>
-              <a href="https://nicepage.com/c/video-website-mockup" class="u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-none u-radius-0 u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-3 u-top-left-radius-0 u-top-right-radius-0 u-btn-5">more</a>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-custom-color-1 u-list-item u-radius-10 u-repeater-item u-shape-round u-video-cover u-list-item-4">
-            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-6"><span class="u-file-icon u-icon u-icon-4"><img src="../../static/images/743420.png" alt=""></span>
-              <h4 class="u-text u-text-10">Something else</h4>
-              <p class="u-text u-text-11">Sample text. Click to select the text box.</p>
-              <a href="https://nicepage.dev" class="u-border-1 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-none u-radius-0 u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-3 u-top-left-radius-0 u-top-right-radius-0 u-btn-6">more</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-align-center u-clearfix u-section-2" id="carousel_90d9">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h3 class="u-custom-font u-font-montserrat u-text u-text-1"> Mission, Vision &amp; History</h3>
-        <div class="u-expanded-width u-list u-list-1">
-          <div class="u-repeater u-repeater-1">
-            <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle">
-              <div class="u-container-layout u-similar-container u-container-layout-1">
-                <div class="u-custom-color-1 u-preserve-proportions u-shape u-shape-circle u-shape-1"></div>
-                <div class="u-align-left u-container-style u-group u-shape-rectangle u-group-1">
-                  <div class="u-container-layout u-valign-top">
-                    <h4 class="u-text u-text-grey-40 u-text-2"> Mission</h4>
-                    <p class="u-text u-text-grey-40 u-text-3"> Our mission is to help people live long and healthy lives through careful monitoring of nutrtition.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle">
-              <div class="u-container-layout u-similar-container u-container-layout-3">
-                <div class="u-custom-color-1 u-preserve-proportions u-shape u-shape-circle u-shape-2"></div>
-                <div class="u-align-left u-container-style u-group u-shape-rectangle u-group-2">
-                  <div class="u-container-layout u-valign-top">
-                    <h4 class="u-text u-text-grey-40 u-text-4"> Vision</h4>
-                    <p class="u-text u-text-grey-40 u-text-5">Create a world where people can take care of their bodies easily and without paying ridiculous fees.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle">
-              <div class="u-container-layout u-similar-container u-container-layout-5">
-                <div class="u-custom-color-1 u-preserve-proportions u-shape u-shape-circle u-shape-3"></div>
-                <div class="u-align-left u-container-style u-group u-shape-rectangle u-group-3">
-                  <div class="u-container-layout u-valign-top">
-                    <h4 class="u-text u-text-grey-40 u-text-6">History</h4>
-                    <p class="u-text u-text-grey-40 u-text-7">Our company was founded today</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle">
-              <div class="u-container-layout u-similar-container u-container-layout-7">
-                <div class="u-custom-color-1 u-preserve-proportions u-shape u-shape-circle u-shape-4"></div>
-                <div class="u-align-left u-container-style u-group u-shape-rectangle u-group-4">
-                  <div class="u-container-layout u-valign-top">
-                    <h4 class="u-text u-text-grey-40 u-text-8">Our Team</h4>
-                    <p class="u-text u-text-grey-40 u-text-9">We are a team of IS students dedicated to making the best application possible.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-section-3" id="carousel_4f2f">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-col">
-              <div class="u-size-30">
-                <div class="u-layout-row">
-                  <div class="u-container-style u-layout-cell u-left-cell u-right-cell u-size-60 u-layout-cell-1">
-                    <div class="u-container-layout u-valign-middle u-container-layout-1">
-                      <h2 class="u-text u-text-1">Each Person is Unique</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="u-size-30">
-                <div class="u-layout-row">
-                  <div class="u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-2">
-                    <div class="u-container-layout u-container-layout-2">
-                      <p class="u-text u-text-2">Each person has a different body that is unique on every level. That means that each person's body has unique nutritional needs.&nbsp;</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
+    </div>
+  </div>
+</section>
+
     {% endblock %}
 

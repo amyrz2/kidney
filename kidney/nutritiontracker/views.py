@@ -58,6 +58,7 @@ def CreateNewUser(request):
         # check whether it's valid:
         if form.is_valid():
             try:
+                print('trying')
                 userData = form.cleaned_data
                 user = User.objects.create_user(username=userData['username'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'])
                 user.save()
@@ -65,11 +66,11 @@ def CreateNewUser(request):
             except IntegrityError:
                 print('duplicate')
                 form = NewUserForm()
-                context = {'message':"This user already exists",'form':form}
+                context = {'message':'This user already exists'}
                 return render(request,'nutritionTracker/createaccount.html',context)
        
     else:
-        print('here')
+        print("no post")
         form = NewUserForm()
         return render(request, 'nutritionTracker/createaccount.html', {'message':'none','form': form})
 
@@ -96,6 +97,12 @@ def logout(request):
         return response
     else:
         return response
+def ContactSupport(request) :
+    return render(request, 'nutritionTracker/contactsupport.html')
+
+
+def addPersonalInfo(request) :
+    return render(request, 'nutritionTracker/addpi.html')
 
 def dashboardPageView(request) :
     return render(request, 'nutritionTracker/dashboard.html')
