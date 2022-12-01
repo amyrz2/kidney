@@ -91,6 +91,12 @@ def logout(request):
         return response
     else:
         return response
+def ContactSupport(request) :
+    return render(request, 'nutritionTracker/contactsupport.html')
+
+
+def addPersonalInfo(request) :
+    return render(request, 'nutritionTracker/addpi.html')
 
 def createaccountPageView(request) :
     return render(request, 'nutritionTracker/createaccount.html')
