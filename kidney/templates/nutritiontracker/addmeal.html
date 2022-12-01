@@ -2,8 +2,15 @@
 {% block content %}
 
 <p>Add Meal</p>
+<form name='searchAPI' id='searchAPI' method='GET' action='searchAPI/'>
+    {% csrf_token %}
+    <input type='text' name='searchQuery'>
+    <button type='submit'>Search</button>
+    {{foodResults}}
+</form>
 
-<form name="form" method="get">
+<form name="form" method="post">
+    <input type='text' id='foodItem'>
     <label for='first_name'>Enter the Item:</label>
     <input type="text" name='first_name' id='first_name'>
     <br><br>

@@ -4,9 +4,11 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext, Context
 from datetime import datetime
-from .forms import NewUserForm
+from .forms import NewUserForm, APISearch
 from django.contrib.auth import authenticate, login
 from django.db import IntegrityError
+import requests
+
 
 #Functioning, logs user in
 def loginAccount(request):
@@ -76,6 +78,7 @@ def indexPageView(request) :
     response = render(request, 'nutritiontracker/index.html') 
     return response
 
+#this is run when the user clicks on mynutrition in the navbar, if logged in, it goes to the dash, otherwise, to login page
 def loginPageView(request) :
     if 'loggedIn' in request.COOKIES:
         if request.COOKIES['loggedIn'] == 'True':
@@ -83,7 +86,7 @@ def loginPageView(request) :
     #else:
     return render(request, 'nutritionTracker/login.html')
 
-#logs user out and sends user to the login page
+#logs user out (removes logged in cookie) and sends user to the login page
 def logout(request):
     response = HttpResponseRedirect('/login')
     if ('loggedIn' in request.COOKIES) & (request.COOKIES['loggedIn'] == 'True') :
@@ -93,9 +96,6 @@ def logout(request):
         return response
     else:
         return response
-
-def createaccountPageView(request) :
-    return render(request, 'nutritionTracker/createaccount.html')
 
 def dashboardPageView(request) :
     return render(request, 'nutritionTracker/dashboard.html')
@@ -108,3 +108,16 @@ def addmealPageView(request) :
 
 def addAPPageView(request) :
     return render(request, 'nutritionTracker/addAP.html')
+
+def searchAPI(request):
+    name = request.GET['searchQuery']
+    url = 'https://api.nal.usda.gov/fdc/v1/foods/search?query='+name+'&pageSize=2&api_key=nel7mrK7DgNjarXN7RhhZk4I2bRVJfeNUa0q7Dxy'
+    response = requests.get(url)
+    data = response.json()
+   
+    myResults = data['foods']
+    
+
+    return render (request, 'nutritionTracker/addmeal.html', { "foodResults": 
+    myResults})
+

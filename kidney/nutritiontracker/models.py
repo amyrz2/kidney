@@ -170,7 +170,7 @@ class Diagnosis(models.Model):
 
     class Meta:
         db_table = 'diagnosis'
-    
+
 
 
     
