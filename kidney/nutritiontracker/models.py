@@ -129,8 +129,8 @@ class Weight(models.Model):
         return f'{self.weight}'
 
 class Height(models.Model):
-    feet = models.DecimalField(max_digits=1, decimal_places=0)
-    inches = models.DecimalField(max_digits=1, decimal_places=0)
+    feet = models.IntegerField()
+    inches = models.IntegerField()
     modify_id = models.ForeignKey(Modify_Info_Entry, on_delete=models.DO_NOTHING)
 
     class Meta:
