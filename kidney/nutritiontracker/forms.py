@@ -10,3 +10,6 @@ class NewUserForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(label='Username', max_length=100,required=True)
     password = forms.CharField(widget=forms.PasswordInput(),required=True)
+
+class APISearch(forms.Form):
+    food_item = forms.CharField(label='item', max_length=100,required=True)
