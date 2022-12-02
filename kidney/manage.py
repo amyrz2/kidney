@@ -3,8 +3,6 @@
 import os
 import sys
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kidney.settings')
-
 
 def main():
     """Run administrative tasks."""
