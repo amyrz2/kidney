@@ -12,7 +12,7 @@ class CustomUserManager(BaseUserManager):
         """
         if not email:
             raise ValueError("The given email must be set")
-        email = self.normalize_email(email)
+        email = self.normalize_email(email, )
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -34,8 +34,8 @@ class CustomUserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 class User(AbstractUser):
     email = models.EmailField("email address", unique=True)
-    phone = models.IntegerField(blank=True)
-    gender = models.CharField(max_length=10)
+    phone = models.IntegerField(blank=True, )
+    gender = models.CharField(max_length=10, )
     birthday = models.DateField()
     USERNAME_FIELD = "email" # make the user log in with the email
     REQUIRED_FIELDS = ["username"]
@@ -56,7 +56,7 @@ class Accountability_Partner(User):
 class Patient(User):
    patient_DOB = models.DateField(help_text= "Date of birthday")
    patient_race = models.CharField(max_length=20)
-   user_gender = models.CharField(max_length=1)
+   user_gender = models.CharField(max_length=1 , )
    doctor = models.ManyToManyField(Doctor, blank=True)
    partner = models.ManyToManyField(Accountability_Partner, blank=True)
    class Meta:

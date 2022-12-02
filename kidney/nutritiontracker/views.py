@@ -63,13 +63,12 @@ def authUser(sUsername,sPassword):
 def CreateNewUser(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        form = NewUserForm(request.POST)
+       
         # check whether it's valid:
-        if form.is_valid():
             try:
                 print('trying')
                 userData = form.cleaned_data
-                user = User.objects.create_user(username=userData['username'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'])
+                user = User.objects.create_user(username=userData['email'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'],phone=userData['phone'], birthday=userData['birthday'], gender=userData['gender'])
                 user.save()
                 return HttpResponseRedirect('/login')
             except IntegrityError:
@@ -80,8 +79,7 @@ def CreateNewUser(request):
        
     else:
         print("no post")
-        form = NewUserForm()
-        return render(request, 'nutritionTracker/createaccount.html', {'message':'none','form': form})
+        return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
 
 
 def indexPageView(request) :
