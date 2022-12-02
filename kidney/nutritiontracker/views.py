@@ -1,14 +1,21 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext, Context
 from datetime import datetime
 from .forms import NewUserForm, APISearch
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm #add this
+
+
 from django.db import IntegrityError
 import requests
 import json
+
+
 
 def make_request():
     res = requests.get('https://reqres.in/api/users')
@@ -18,6 +25,23 @@ def make_request():
 
 make_request()
 
+def login_request(request):
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return render(request, 'nutritionTracker/dashboard.html')
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+	form = AuthenticationForm()
+	return render(request=request, template_name="nutritionTracker/login.html", context={"login_form":form})
 
 #Functioning, logs user in
 def loginAccount(request):
@@ -36,42 +60,97 @@ def loginAccount(request):
         return render(request, 'nutritionTracker/login.html',context)
         # Return an 'invalid login' error message.
 
-#Functioning Route
-def createNewUser(request):
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+            
+			user = form.save()
     
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return render(request,'nutritionTracker/login.html')
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = NewUserForm()
+	return render (request=request, template_name="nutritionTracker/register.html", context={"register_form":form})
+
+#Functioning Route
+# def createNewUser(request):
+    
+#     # if this is a POST request we need to process the form data
+#     if request.method == 'POST':
         
-        # check whether it's valid:
-        try:
-            print('trying')
-            userData = request.POST
-            User.objects.create_user(username=userData['email'],password=userData['password'],first_name=userData['firstname'],last_name=userData['lastname'],email=userData['email'])
+#         # check whether it's valid:
+#         try:
+#             print('trying')
+#             userData = request.POST
+#             User.objects.create_user(email=userData['email'],password=userData['password'],first_name=userData['firstname'],last_name=userData['lastname'])
             
-        except IntegrityError:
-            print('duplicate')
+#         except IntegrityError as e:
+#             print('duplicate')
             
-            context = {'message':'This user already exists'}
-            return render(request,'nutritionTracker/createaccount.html',context)
-        print('worked')
-        return render(request,'nutritionTracker/login.html')
-    else:
-        print("no post")
-     
-        return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
+#             context = {
+#                 'message':['This user already exists']
+#             }
+#             return render(request,'nutritionTracker/index.html',context)
+#         print('worked')
+#         return render(request,'nutritionTracker/login.html')
+#     else:
+#         print("no post")
+#         return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
+
+
+#Functioning Route
+# def CreateNewUser(request):
+#     # if this is a POST request we need to process the form data
+#     if request.method == 'POST':
+       
+#         # check whether it's valid:
+#             try:
+#                 print('trying')
+#                 userData = form.cleaned_data
+#                 user = User.objects.create_user(username=userData['email'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'],phone=userData['phone'], birthday=userData['birthday'], gender=userData['gender'])
+#                 user.save()
+#                 return HttpResponseRedirect('/login')
+#             except IntegrityError:
+#                 print('duplicate')
+#                 form = NewUserForm()
+#                 context = {'message':'This user already exists'}
+#                 return render(request,'nutritionTracker/createaccount.html',context)
+       
+#     else:
+#         print("no post")
+#         return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
+
+
 
 #Check to see if the browser contains a login cookie    
+# def checkLogin(request,route):
+#     if request.COOKIES['loggedIn']:
+#         print('good')
+#         return render(request, route)
+#     else:
+#         print('bad')
+#         return render(request, 'nutritionTracker/login.html')
+
 def checkLogin(request,route):
     if request.COOKIES['loggedIn']:
         print('good')
-        return render(request, route)
+        checkLogin = True
+        return render(request, route, checkLogin)
     else:
         print('bad')
-        return render(request, 'nutritionTracker/login.html')
+        checkLogin = False
+        return render(request, 'nutritionTracker/login.html', checkLogin)
 
 def personalInformationPageView(request) :
-    route = 'nutritionTracker/personalInformation.html'
-    return checkLogin(request,route)
+
+    return render(request, 'nutritionTracker/personalinfo.html')
+
+
+# def personalInformationPageView(request) :
+#     route = 'nutritionTracker/personalInformation.html'
+#     return checkLogin(request, route)
     #return render(request, 'nutritionTracker/personalInformation.html')
 
 #Not associated with a URL, called by other views to check user before continuing
@@ -82,28 +161,6 @@ def authUser(sUsername,sPassword):
     else:
         bAuthorized = False
     return bAuthorized
-
-#Functioning Route
-def CreateNewUser(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-       
-        # check whether it's valid:
-            try:
-                print('trying')
-                userData = form.cleaned_data
-                user = User.objects.create_user(username=userData['email'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'],phone=userData['phone'], birthday=userData['birthday'], gender=userData['gender'])
-                user.save()
-                return HttpResponseRedirect('/login')
-            except IntegrityError:
-                print('duplicate')
-                form = NewUserForm()
-                context = {'message':'This user already exists'}
-                return render(request,'nutritionTracker/createaccount.html',context)
-       
-    else:
-        print("no post")
-        return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
 
 
 def indexPageView(request) :

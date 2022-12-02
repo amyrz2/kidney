@@ -1,9 +1,32 @@
 {% extends 'partials/base.html' %}
 {% block title %} Create Account {% endblock %}
-{% block link %}<link rel="stylesheet" href="../../static/css/createaccount.css" media="screen">{% endblock %}
+{% block link %}<link rel="stylesheet" href="../../static/css/createaccount.css" media="screen">{% endblock %} 
+
+{% block include %}
+{% include 'partials/prenav.html' %}
+{% endblock %}
+
+{% load crispy_forms_tags %}         
 
 {% block content %}
+<!--Register--> 
+<div class="container py-5">
+  <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Create Account</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ register_form |crispy }}                    
+		<button class="btn btn-primary" type="submit" >Continue</button>
+	</form>
+	<p class="text-center">If you already have an account, <a href="{%url 'login'%}">login</a> instead.</p>
+</div>
 
+{% endblock %}
+
+
+
+{% comment %} 
+
+{% block content %}
 <section class="u-align-center u-clearfix u-section-1" id="sec-2605">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Create Account</h1>
@@ -55,10 +78,9 @@
               </div>
             </div>
           </div>
-
-          {% if message == 'This user already exists' %}
-          <span style='color:red'>This user already exists</span>
-          {% endif %}
+          {% for x in message %}
+          <span style='color:red'>{{x}}</span>
+          {% endfor %}
 
 
           <div class="u-form-group u-form-submit u-label-left">
@@ -67,15 +89,22 @@
               <a class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-1">Submit</a>
             </div>
             <input type="submit" value="submit" class="u-form-control-hidden">
-          </div>
+          </div> 
+{% endcomment %}
 
 
           {% comment %} <input type="hidden" value="" name="recaptchaResponse">
           <input type="hidden" name="formServices" value=""> {% endcomment %}
-        </form>
+
+
+
+{% comment %} 
+      </form>
       </div>
     </div>
   </section>
 
-{% endblock %}
+{% endblock %} 
+
+{% endcomment %}
 

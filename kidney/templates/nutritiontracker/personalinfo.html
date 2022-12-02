@@ -1,22 +1,71 @@
-{% extends 'postlogin/base.html' %}
 {% extends 'partials/base.html' %}
-{% block title %} Login {% endblock %}
+{% block title %} Personal Information {% endblock %}
 {% block link %}<link rel="stylesheet" href="../../static/css/personalinfo.css" media="screen">{% endblock %}
 
-{% block content %}
+{% block include %}
+{% include 'partials/prenav.html' %}
+{% endblock %}
+
 {% load crispy_forms_tags %}
 
-<div class = "row mt-3 pt-3">
-    <div class = "col-md-4">
-        <div class = "border p-3 shadow">
-            <h4>Personal Information</h4>
-            <br>
+{% block content %}
+<section class="u-align-center u-clearfix u-section-1" id="sec-2605">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Personal Information</h1>
+      <div class="u-align-center u-form u-form-1">
+        <form action="" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 13px;"  name="form">
+          {%csrf_token%}
+          <div class="u-form-group u-form-name u-label-left">
+            <label for="firstname" class="u-custom-font u-heading-font u-label u-spacing-0 u-label-1">First Name</label>
+            <input type="text" id="firstname" name="firstname" class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-white" required="" spellcheck="false" placeholder="Enter first name ">
+          </div>
+          <div class="u-form-group u-label-left u-form-group-2">
+            <label for="lastname" class="u-custom-font u-heading-font u-label u-spacing-0 u-label-2">Last Name</label>
+            <input type="text" placeholder="Enter last name" id="lastname" name="lastname" class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-white" spellcheck="false">
+          </div>
+          <div class="u-form-group u-form-phone u-label-left u-form-group-3">
+            <label for="phone" class="u-custom-font u-heading-font u-label u-spacing-0 u-label-3">Mobile Number</label>
+            <input type="tel" placeholder="Enter your phone (e.g. 4155552675)" id="phone" name="phone" class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-white" spellcheck="false">
+          </div>
+          <div class="u-form-date u-form-group u-label-left u-form-group-7">
+            <label for="dob" class="u-custom-font u-heading-font u-label u-spacing-0 u-label-7">Birthday</label>
+            <input type="date" placeholder="MM/DD/YYYY" id="dob" name="dob" class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-white" required="" spellcheck="false">
+          </div>
+          <div class="u-form-group u-form-input-layout-vertical u-form-radiobutton u-label-left u-form-group-8">
+            <label class="u-custom-font u-heading-font u-label u-spacing-0 u-label-8">Gender</label>
+            <div class="u-form-radio-button-wrapper">
+              <div class="u-input-row">
+                <input type="radio" name="radiobutton" value="Female" required="required">
+                <label class="u-custom-font u-heading-font u-label u-spacing-0 u-label-9" for="radiobutton">Female</label>
+              </div>
+              <div class="u-input-row">
+                <input type="radio" name="radiobutton" value="Male" required="required">
+                <label class="u-custom-font u-heading-font u-label u-spacing-0 u-label-10" for="radiobutton">Male</label>
+              </div>
+              <div class="u-input-row">
+                <input type="radio" name="radiobutton" value="Other" required="required">
+                <label class="u-custom-font u-heading-font u-label u-spacing-0 u-label-11" for="radiobutton">Other</label>
+              </div>
+            </div>
+          </div>
+          <div class="u-form-group u-label-left u-form-group-5">
+            <label for="height" class="u-custom-font u-heading-font u-label u-spacing-0 u-label-5">Height</label>
+            <input type="text" placeholder="heigh in inches" id="height" name="height" class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-white" spellcheck="false">
+          </div>
+          <div class="u-form-group u-label-left u-form-group-6">
+            <label for="weight" class="u-custom-font u-heading-font u-label u-spacing-0 u-label-6">Weight</label>
+            <input type="text" placeholder="weight in pounds" id="weight" name="weight" class="u-border-1 u-border-grey-30 u-custom-font u-heading-font u-input u-input-rectangle u-white" spellcheck="false">
+          </div>
 
-            
-            <br>
-        </div>
-    </div>
 
-
+          <div class="u-form-group u-form-submit u-label-left">
+            <label class="u-label u-spacing-0 u-label-12"></label>
+            <div class="u-align-left u-btn-submit-container">
+              <a class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-1">Submit</a>
+            </div>
+            <input type="submit" value="submit" class="u-form-control-hidden">
+            <br><br>
+          </div>
+          
 
 {% endblock %}

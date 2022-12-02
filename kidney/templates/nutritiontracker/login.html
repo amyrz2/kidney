@@ -2,11 +2,28 @@
 {% block title %} Login {% endblock %}
 {% block link %} <link rel="stylesheet" href="../../static/css/login.css" media="screen"> {% endblock %}
 
-<p>{{failed}}</p>
+{% block include %}
+{% include 'partials/prenav.html' %}
+{% endblock %}
 
+{% block content %}      
 
-{% block content %}
-<section class="u-clearfix u-section-1" id="sec-8da5">
+{% load crispy_forms_tags %}
+
+<!--Login--> 
+<div class="container py-5">
+  <h1>Login</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ login_form|crispy }}
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+  <p class="text-center">Don't have an account? <a href={%url 'register'%>Create an account</a>.</p>
+</div>
+
+{% endblock %}
+
+{% comment %} <section class="u-clearfix u-section-1" id="sec-8da5">
   <div class="u-clearfix u-sheet u-sheet-1">
     <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Login</h1>
     <div class="u-form u-login-control u-form-1">
@@ -33,11 +50,10 @@
         <input type="hidden" value="" name="recaptchaResponse">
       </form>
     </div>
-    <a href={%url "createNewUser"%} class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-2">Sign Up Now</a>
-    <p class="u-text u-text-default u-text-2">Don't Have An Account?</p>
-    <span style="color:gray"><a href={%url "createNewUser"%}>Create Account</a></span>
+    <a href={%url "register"%} class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-2">Don't Have An Account? Sign Up Now</a>
+
   </div>
-</section>
+</section> {% endcomment %}
 
 
 {% comment %} <body >
@@ -67,4 +83,3 @@
   </body>
 <br> {% endcomment %}
 
-{% endblock %}
