@@ -14,6 +14,7 @@ urlpatterns = [
     path("contactsupport/", views.ContactSupport, name="contactsupport"),
     path("loginAccount/",views.loginAccount, name='loginAccount'),
     path("logout/", views.logout, name='logout'),
-    path("addmeal/searchAPI/", views.searchAPI, name='searchAPI'),
-    path("addpi/",views.addPersonalInfo, name='addpi')
+    path("searchAPI/", views.searchAPI, name='searchAPI'),
+    path("addpi/",views.addPersonalInfo, name='addpi'),
+    path("logFood/",views.logFood, name='logFood')
 ]    

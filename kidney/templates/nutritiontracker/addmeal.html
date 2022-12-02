@@ -5,24 +5,30 @@
 {% block content %}
 
 
-<p>Add Meal</p>
-<form name='searchAPI' id='searchAPI' method='GET' action='searchAPI/'>
+<h3>Select Item</h3>
+
+<form name='searchAPI' method='post' action='/searchAPI/'>
     {% csrf_token %}
     <input type='text' name='searchQuery'>
-    <button type='submit'>Search</button>
-    {{foodResults}}
+    <button type='submit'>Search</button><br>
 </form>
-
-<form name="form" method="post">
-    <input type='text' id='foodItem'>
-    <label for='first_name'>Enter the Item:</label>
-    <input type="text" name='first_name' id='first_name'>
-    <br><br>
-    <label for='last_name'>Enter the amount:</label>
-    <input type="text" name='last_name' id='last_name'>
-    <br><br>
-    <button type="submit">Add</button>
-</form>
+<br>
+{% if foodResults %}
+    <form name='submitEntry' method='post' action='/submitEntry/'>
+        <select name='selectedFood'>
+            {%for i in foodResults%}
+                <option value={{i}}> {{i.description}} {%if i.brandName%}, {{i.brandName}} {% endif %}{%if i.servingSize%}({{i.servingSize}}{{i.servingUnit}}){%endif%}</option>
+            {% endfor %}
+        </select>
+        <button type='submit'>Confirm Selection</button>
+    <form>
+{% endif %}
+<br>
+{% if foodOptions%}
+        <form name='submitOptions' method='post' action='/submitOptions/'>
+            
+        </form>
+{% endif %}
 <br>
 
 {% endblock %}
