@@ -27,6 +27,30 @@ def loginAccount(request):
         return render(request, 'nutritionTracker/login.html',context)
         # Return an 'invalid login' error message.
 
+#Functioning Route
+def createNewUser(request):
+    
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        
+        # check whether it's valid:
+        try:
+            print('trying')
+            userData = request.POST
+            User.objects.create_user(username=userData['email'],password=userData['password'],first_name=userData['firstname'],last_name=userData['lastname'],email=userData['email'])
+            
+        except IntegrityError:
+            print('duplicate')
+            
+            context = {'message':'This user already exists'}
+            return render(request,'nutritionTracker/createaccount.html',context)
+        print('worked')
+        return render(request,'nutritionTracker/login.html')
+    else:
+        print("no post")
+     
+        return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
+
 #Check to see if the browser contains a login cookie    
 def checkLogin(request,route):
     if request.COOKIES['loggedIn']:
@@ -49,30 +73,6 @@ def authUser(sUsername,sPassword):
     else:
         bAuthorized = False
     return bAuthorized
-
-#Functioning Route
-def CreateNewUser(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        form = NewUserForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            try:
-                print('trying')
-                userData = form.cleaned_data
-                user = User.objects.create_user(username=userData['username'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'])
-                user.save()
-                return HttpResponseRedirect('/login')
-            except IntegrityError:
-                print('duplicate')
-                form = NewUserForm()
-                context = {'message':'This user already exists'}
-                return render(request,'nutritionTracker/createaccount.html',context)
-       
-    else:
-        print("no post")
-        form = NewUserForm()
-        return render(request, 'nutritionTracker/createaccount.html', {'message':'none','form': form})
 
 
 def indexPageView(request) :
