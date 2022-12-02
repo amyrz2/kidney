@@ -11,6 +11,7 @@ urlpatterns = [
     path("addmeal/", views.addmealPageView, name="addmeal"),
     path("addAP/", views.addAPPageView, name="addAP"),
     path("register/", views.register_request, name="register"),
+    path("createnewuser/", views.createNewUser, name="createnewuser"),
     path("contactsupport/", views.ContactSupport, name="contactsupport"),
     path("loginAccount/",views.loginAccount, name='loginAccount'),
     path("logout/", views.logout, name='logout'),
@@ -19,4 +20,5 @@ urlpatterns = [
     path("logFood/",views.logFood, name='logFood'),
     path("submitEntry/",views.submitEntry, name='submitEntry'),
     path("submitOptions/",views.submitOptions, name='submitOptions'),
+    path("viewpi/",views.viewPI, name='viewpi'),
 ]    
