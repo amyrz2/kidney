@@ -74,14 +74,29 @@
               <div class="u-layout-col">
                 <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-40 u-white u-layout-cell-2">
                   <div class="u-container-layout u-container-layout-2">
-                    <h2 class="u-text u-text-custom-color-1 u-text-2">Suggestions</h2>
-                    <p class="u-text u-text-3">Sample text.&nbsp;</p>
-                    <p class="u-text u-text-4">Sample text.&nbsp;</p>
-                    <p class="u-text u-text-5">Sample text.&nbsp;</p>
-                    <p class="u-text u-text-6">Sample text.&nbsp;</p>
-                    <p class="u-text u-text-7">Sample text.&nbsp;</p>
-                    <p class="u-text u-text-8">Sample text.&nbsp;</p>
-                    <a href="" class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-6" extln_redirecting="true">learn more</a>
+                    <h2 class="u-text u-text-custom-color-1 u-text-2">Recent Entries</h2><br>
+                    
+                    {% for entry in entries%}
+                      {{entry.serving_quantity}} Servings of {{entry.item}} on {{entry.entry_datetime}}<br>Nutritional Information:
+                      <ul>
+                        {% if entry.sodium%}
+                          <li>Sodium: {{entry.sodium}}mg</li>
+                        {% endif %}
+                        {% if entry.potassium%}
+                          <li>Potassium: {{entry.potassium}}mg</li>
+                        {% endif %}
+                        {% if entry.phosophorus%}
+                          <li>Phosphorus: {{entry.phosophorus}}mg</li>
+                        {% endif %}
+                        {% if entry.protein%}
+                          <li>Protein: {{entry.protein}}g</li>
+                        {% endif %}
+                        {% if entry.water%}
+                          <li>Water: {{entry.water}}g</li>
+                        {% endif %}
+                      </ul>
+                    {% endfor %}
+            
                   </div>
                 </div>
                 <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-white u-layout-cell-3" src="">

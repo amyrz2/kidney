@@ -7,7 +7,8 @@ from datetime import datetime
 from .forms import NewUserForm
 from django.contrib.auth import authenticate, login
 from django.db import IntegrityError
-
+from .models import Journal_Line_Item
+import requests
 #Functioning, logs user in
 def loginAccount(request):
     sUsername = request.POST['uname']
@@ -77,7 +78,7 @@ def indexPageView(request) :
 def loginPageView(request) :
     if 'loggedIn' in request.COOKIES:
         if request.COOKIES['loggedIn'] == 'True':
-            return render(request, 'nutritionTracker/dashboard.html')
+            return HttpResponseRedirect('/dashboard')
     #else:
     return render(request, 'nutritionTracker/login.html')
 
@@ -102,7 +103,12 @@ def createaccountPageView(request) :
     return render(request, 'nutritionTracker/createaccount.html')
 
 def dashboardPageView(request) :
-    return render(request, 'nutritionTracker/dashboard.html')
+    if ('loggedIn' in request.COOKIES) & (request.COOKIES['loggedIn'] == 'True') :
+        thisUser = request.user
+        entries = Journal_Line_Item.objects.filter(user=thisUser)
+        return render(request, 'nutritionTracker/dashboard.html',{'entries':entries})
+    else:
+        return render(request, 'nutritionTracker/login.html')
 
 def journalPageView(request) :
     return render(request, 'nutritionTracker/journal.html')
@@ -112,3 +118,65 @@ def addmealPageView(request) :
 
 def addAPPageView(request) :
     return render(request, 'nutritionTracker/addAP.html')
+
+def searchAPI(request):
+    name = request.POST['searchQuery']
+    url = 'https://api.nal.usda.gov/fdc/v1/foods/search?query='+name+'&api_key=nel7mrK7DgNjarXN7RhhZk4I2bRVJfeNUa0q7Dxy'
+    response = requests.get(url)
+    data = response.json()
+    
+    myResults = data['foods']
+    foodObjects = []
+
+    #returns all of the results from the API query, creates a list called foodObjects with the necessary attributes
+    for item in myResults:
+        food = {}
+        if 'brandName' in item:
+            food['brandName'] = item['brandName']
+        if 'description' in item:
+            food['description'] = item['lowercaseDescription']
+        if 'ingredients' in item:
+            food['ingredients'] = item['ingredients']
+        if 'servingSizeUnit' in item:
+            food['servingUnit'] = item['servingSizeUnit']
+        if 'servingSize' in item:
+            food['servingSize'] = round(item['servingSize'])
+        if 'foodNutrients' in item:
+            food['nutrients'] = item['foodNutrients']
+        foodObjects.append(food)
+
+        
+    return render (request, 'nutritionTracker/addmeal.html', { "foodResults": 
+    foodObjects})
+
+def logFood(request):
+    return render (request, 'nutritionTracker/logFood.html')
+
+def submitEntry(request):
+    foodPicked = request.POST.get('selectedFood')
+
+    return render (request, 'nutritionTracker/addmeal.html',{'foodPicked':eval(foodPicked)})
+
+def submitOptions(request):
+    newEntry = Journal_Line_Item()
+    newEntry.serving_quantity = request.POST.get('servings')
+    rawData = eval(request.POST.get('rawData'))
+    newEntry.item = rawData['description']
+    nutrientList = rawData['nutrients']
+    newEntry.user = request.user
+    for nutrient in nutrientList:
+       
+        if nutrient['nutrientName'] == 'Sodium, Na':
+            newEntry.sodium = nutrient['value']
+        elif nutrient['nutrientName'] == 'Potassium, K':
+            newEntry.potassium = nutrient['value']
+        elif nutrient['nutrientName'] == 'Phosphorus, P':
+            newEntry.phosophorus = nutrient['value']
+        elif nutrient['nutrientName'] == 'Protein':
+            newEntry.protein = nutrient['value']
+        elif nutrient['nutrientName'] == 'Water':
+            newEntry.water = nutrient['value']
+
+    newEntry.save()
+    return HttpResponseRedirect('/dashboard')
+    
