@@ -14,6 +14,7 @@ from django.contrib.auth.forms import AuthenticationForm #add this
 from django.db import IntegrityError
 import requests
 import json
+from .models import Journal_Line_Item
 
 
 
@@ -248,3 +249,31 @@ def searchAPI(request):
 
 def logFood(request):
     return render (request, 'nutritionTracker/logFood.html')
+
+def submitEntry(request):
+    foodPicked = request.POST.get('selectedFood')
+
+    return render (request, 'nutritionTracker/addmeal.html',{'foodPicked':eval(foodPicked)})
+
+def submitOptions(request):
+    newEntry = Journal_Line_Item()
+    newEntry.serving_quantity = request.POST.get('servings')
+    rawData = eval(request.POST.get('rawData'))
+    newEntry.item = rawData['description']
+    nutrientList = rawData['nutrients']
+   
+    for nutrient in nutrientList:
+       
+        if nutrient['nutrientName'] == 'Sodium, Na':
+            newEntry.sodium = nutrient['value']
+        elif nutrient['nutrientName'] == 'Potassium, K':
+            newEntry.potassium = nutrient['value']
+        elif nutrient['nutrientName'] == 'Phosphorus, P':
+            newEntry.phosophorus = nutrient['value']
+        elif nutrient['nutrientName'] == 'Protein':
+            newEntry.protein = nutrient['value']
+        elif nutrient['nutrientName'] == 'Water':
+            newEntry.water = nutrient['value']
+    newEntry.save()
+   
+    return render (request, 'nutritionTracker/dashboard.html')
