@@ -60,7 +60,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'happy_kidney_tracker',
     'USER': 'postgres',
-    'PASSWORD': 'password',
+    'PASSWORD': '208073',
     'HOST': 'localhost',
     'PORT' : '5432'
     }
@@ -97,3 +97,4 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
