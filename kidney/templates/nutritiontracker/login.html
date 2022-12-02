@@ -1,74 +1,45 @@
-{% extends 'prelogin/base.html' %}
+{% extends 'partials/base.html' %}
+{% block title %} Login {% endblock %}
+{% block link %} <link rel="stylesheet" href="../../static/css/login.css" media="screen"> {% endblock %}
 
-{% block head %}
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-<style>
-  html, body {
-  display: in-line;
-  justify-content: center;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 15px;
-  }
-  form {
-  border: 5px solid #f1f1f1;
-  padding-right: 500px;
-  padding-left: 500px;
-
-  }
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 16px 8px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  }
-  button {
-  background-color: #8ebf42;
-  color: white;
-  padding: 14px 0;
-  margin: 10px 0;
-  border: none;
-  cursor: grabbing;
-  width: 100%;
-  }
-  h1 {
-  text-align:center;
-  fone-size:18;
-  }
-  button:hover {
-  opacity: 0.8;
-  }
-  .formcontainer {
-  text-align: left;
-  margin: 24px 50px 12px;
-
-  }
-  .container {
-  padding: 16px 0;
-  text-align:left;
-
-  }
-  span.psw {
-  float: right;
-  padding-top: 0;
-  padding-right: 15px;
-  }
-  /* Change styles for span on extra small screens */
-  @media screen and (max-width: 300px) {
-  span.psw {
-  display: block;
-  float: none;
-  }
-}
-</style>
-{% endblock %}
 <p>{{failed}}</p>
 
 
-
 {% block content %}
-<body >
+<section class="u-clearfix u-section-1" id="sec-8da5">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Login</h1>
+    <div class="u-form u-login-control u-form-1">
+      <form action="/loginAccount/" method="post" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+        {% csrf_token %}
+        <div class="u-form-group u-form-name u-label-top">
+          <label for="uname" class="u-label">Username *</label>
+          <input type="text" placeholder="Enter your Username" id="uname" name="uname" class="u-border-grey-30 u-input u-input-rectangle u-input-1" required="" spellcheck="false">
+        </div>
+        <div class="u-form-group u-form-password u-label-top">
+          <label for="psw" class="u-label">Password *</label>
+          <input type="password" placeholder="Enter your Password" id="psw" name="psw" class="u-border-grey-30 u-input u-input-rectangle u-input-2" required="" spellcheck="false">
+        </div>
+        
+        {% if failed == True %}
+        <span style='color:red'>Incorrect Username or Password</span>
+        {% endif %}
+
+        <div class="u-align-left u-form-group u-form-submit u-label-top">
+          <a href="#" class="u-active-custom-color-3 u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-hover-custom-color-2 u-btn-1">Login</a>
+          <input type="submit" value="submit" class="u-form-control-hidden">
+        </div>
+        <input type="hidden" value="" name="recaptchaResponse">
+      </form>
+    </div>
+    <a href={%url "createNewUser"%} class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-2">Sign Up Now</a>
+    <p class="u-text u-text-default u-text-2">Don't Have An Account?</p>
+    <span style="color:gray"><a href={%url "createNewUser"%}>Create Account</a></span>
+  </div>
+</section>
+
+
+{% comment %} <body >
     <form action="/loginAccount/" method="post">
       {% csrf_token %}
       <h1 class="">Login</h1>
@@ -93,5 +64,6 @@
 
     </form>
   </body>
-<br><br><br><br><br><br><br><br><br><br>
+<br> {% endcomment %}
+
 {% endblock %}
