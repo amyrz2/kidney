@@ -16,5 +16,7 @@ urlpatterns = [
     path("logout/", views.logout, name='logout'),
     path("searchAPI/", views.searchAPI, name='searchAPI'),
     path("addpi/",views.addPersonalInfo, name='addpi'),
-    path("logFood/",views.logFood, name='logFood')
+    path("logFood/",views.logFood, name='logFood'),
+    path("submitEntry/",views.submitEntry, name='submitEntry'),
+    path("submitOptions/",views.submitOptions, name='submitOptions'),
 ]    

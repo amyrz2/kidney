@@ -63,6 +63,25 @@ class Patient(User):
        db_table = 'patient'
    def __str__(self):
        return f'{self.patient_DOB}-{self.patient_race}'
+
+
+class Measurement_Type(models.Model):
+   unit_name = models.CharField(max_length=20)
+   class Meta:
+       db_table = 'measurement_type'
+   def __str__(self):
+       return f'{self.unit_name}'
+class Item(models.Model):
+   item_name = models.CharField(max_length=20)
+   serving_size = models.DecimalField(max_digits=8,decimal_places=2)
+   
+   measurement_type = models.ForeignKey(Measurement_Type, on_delete=models.DO_NOTHING)
+   class Meta:
+       db_table = 'item'
+   def __str__(self):
+       return f'{self.item_name}-{self.serving_size}'
+
+#Probably removing this table, just log each entry individually with patient_id and date
 class Journal_Entry(models.Model):
    entry_datetime = models.DateTimeField(default=timezone.now)
    patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING)
@@ -76,30 +95,18 @@ class Journal_Entry_Type(models.Model):
        db_table = 'journal_entry_type'
    def __str__(self):
        return f'{self.type_name}'
-class Measurement_Type(models.Model):
-   unit_name = models.CharField(max_length=20)
-   class Meta:
-       db_table = 'measurement_type'
-   def __str__(self):
-       return f'{self.unit_name}'
-class Item(models.Model):
-   item_name = models.CharField(max_length=20)
-   serving_size = models.DecimalField(max_digits=8,decimal_places=2)
-   sodium = models.FloatField()
-   potassium = models.FloatField()
-   phosophorus = models.FloatField()
-   protein = models.FloatField()
-   water = models.FloatField()
-   measurement_type = models.ForeignKey(Measurement_Type, on_delete=models.DO_NOTHING)
-   class Meta:
-       db_table = 'item'
-   def __str__(self):
-       return f'{self.item_name}-{self.serving_size}'
 class Journal_Line_Item(models.Model):
+   entry_datetime = models.DateTimeField(default=timezone.now)
    serving_quantity = models.DecimalField(max_digits=4, decimal_places=2)
-   entry = models.ForeignKey(Journal_Entry, on_delete=models.DO_NOTHING)
-   type = models.ForeignKey(Journal_Entry_Type, on_delete=models.DO_NOTHING)
-   item = models.ForeignKey(Item, on_delete=models.DO_NOTHING)
+   #entry = models.ForeignKey(Journal_Entry, on_delete=models.DO_NOTHING)
+   #needs to inherit user_id
+   #type = models.ForeignKey(Journal_Entry_Type, on_delete=models.DO_NOTHING)
+   item = models.CharField(max_length=50)
+   sodium = models.FloatField(null=True)
+   potassium = models.FloatField(null=True)
+   phosophorus = models.FloatField(null=True)
+   protein = models.FloatField(null=True)
+   water = models.FloatField(null=True)
    class Meta:
        db_table = 'journal_line_item'
    def __str__(self):
