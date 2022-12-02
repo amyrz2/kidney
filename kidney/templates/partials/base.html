@@ -12,6 +12,7 @@
     
     <script class="u-script" type="text/javascript" src="../../static/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="../../static/js/nicepage.js" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900|Lobster:400|Titillium+Web:200,200i,300,300i,400,400i,600,600i,700,700i,900">
@@ -32,6 +33,7 @@
       <meta property="og:title" content="Home">
       <meta property="og:description" content="">
       <meta property="og:type" content="website">
+      <script>{% block headjs %}{% endblock %}</script>
   </head>
   
   <body class="u-body u-xl-mode" data-lang="en">
@@ -40,20 +42,22 @@
 
     {% block content %}
     {% endblock %}
-    
-    
-          <footer class="u-clearfix u-footer u-grey-80" id="sec-9fee"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <div class="u-clearfix u-group-elements u-group-elements-1">
-              <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Happy Kidney</h1>
-              <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1280">
-                <img src="../../static/images/g62b44a9ccf6b6f7087c26b5be1309eb92a108c37a35dfaa1c4513921d7c0fd1b92fb27bac52995bcea38cc601a0a41f093396577dc93935d26c498b67cfcdc9e_1280.jpg" class="u-logo-image u-logo-image-1">
-              </a>
-            </div>
-            <a href="https://nicepage.com/c/tiles-website-templates" class="u-active-none u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-btn-rectangle u-button-style u-hover-none u-none u-radius-0 u-top-left-radius-0 u-top-right-radius-0 u-btn-1">Contact Us</a>
-            <p class="u-align-center u-text u-text-2" spellcheck="false">Intext 2022 Group 5-2</p>
-          </div>
-        </footer>
 
+    <script>
+      {% block js_scripts %}{% endblock %}
+    </script> 
+    
+        <footer class="u-clearfix u-footer u-grey-80" id="sec-9fee"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+          <div class="u-clearfix u-group-elements u-group-elements-1">
+            <h1 class="u-align-center u-custom-font u-font-roboto-slab u-text u-text-palette-2-light-1 u-text-1" spellcheck="false">Happy Kidney</h1>
+            <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1280">
+              <img src="../../static/images/g62b44a9ccf6b6f7087c26b5be1309eb92a108c37a35dfaa1c4513921d7c0fd1b92fb27bac52995bcea38cc601a0a41f093396577dc93935d26c498b67cfcdc9e_1280.jpg" class="u-logo-image u-logo-image-1">
+            </a>
+          </div>
+          <a href="https://nicepage.com/c/tiles-website-templates" class="u-active-none u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-btn-rectangle u-button-style u-hover-none u-none u-radius-0 u-top-left-radius-0 u-top-right-radius-0 u-btn-1">Contact Us</a>
+          <p class="u-align-center u-text u-text-2" spellcheck="false">Intext 2022 Group 5-2</p>
+        </div>
+      </footer>
       
   </body>
 </html>

@@ -8,6 +8,15 @@ from .forms import NewUserForm, APISearch
 from django.contrib.auth import authenticate, login
 from django.db import IntegrityError
 import requests
+import json
+
+def make_request():
+    res = requests.get('https://reqres.in/api/users')
+
+    print(res.json())
+
+
+make_request()
 
 
 #Functioning, logs user in
@@ -74,6 +83,28 @@ def authUser(sUsername,sPassword):
         bAuthorized = False
     return bAuthorized
 
+#Functioning Route
+def CreateNewUser(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+       
+        # check whether it's valid:
+            try:
+                print('trying')
+                userData = form.cleaned_data
+                user = User.objects.create_user(username=userData['email'],password=userData['password'],first_name=userData['f_name'],last_name=userData['l_name'],email=userData['email'],phone=userData['phone'], birthday=userData['birthday'], gender=userData['gender'])
+                user.save()
+                return HttpResponseRedirect('/login')
+            except IntegrityError:
+                print('duplicate')
+                form = NewUserForm()
+                context = {'message':'This user already exists'}
+                return render(request,'nutritionTracker/createaccount.html',context)
+       
+    else:
+        print("no post")
+        return render(request, 'nutritionTracker/createaccount.html', {'message':'none'})
+
 
 def indexPageView(request) :
     response = render(request, 'nutritiontracker/index.html') 
@@ -105,7 +136,19 @@ def addPersonalInfo(request) :
     return render(request, 'nutritionTracker/addpi.html')
 
 def dashboardPageView(request) :
-    return render(request, 'nutritionTracker/dashboard.html')
+    labels = []
+    data = []
+
+    # queryset = City.objects.order_by('-population')[:5]
+    # for city in queryset:
+    #     labels.append(city.name)
+    #     data.append(city.population)
+
+ 
+    return render(request, 'nutritionTracker/dashboard.html', {
+        'labels': labels,
+        'data': data,
+    })
 
 def journalPageView(request) :
     return render(request, 'nutritionTracker/journal.html')
@@ -117,14 +160,34 @@ def addAPPageView(request) :
     return render(request, 'nutritionTracker/addAP.html')
 
 def searchAPI(request):
-    name = request.GET['searchQuery']
-    url = 'https://api.nal.usda.gov/fdc/v1/foods/search?query='+name+'&pageSize=2&api_key=nel7mrK7DgNjarXN7RhhZk4I2bRVJfeNUa0q7Dxy'
+    name = request.POST['searchQuery']
+    url = 'https://api.nal.usda.gov/fdc/v1/foods/search?query='+name+'&api_key=nel7mrK7DgNjarXN7RhhZk4I2bRVJfeNUa0q7Dxy'
     response = requests.get(url)
     data = response.json()
-   
-    myResults = data['foods']
     
+    myResults = data['foods']
+    foodObjects = []
 
+    #returns all of the results from the API query, creates a list called foodObjects with the necessary attributes
+    for item in myResults:
+        food = {}
+        if 'brandName' in item:
+            food['brandName'] = item['brandName']
+        if 'description' in item:
+            food['description'] = item['lowercaseDescription']
+        if 'ingredients' in item:
+            food['ingredients'] = item['ingredients']
+        if 'servingSizeUnit' in item:
+            food['servingUnit'] = item['servingSizeUnit']
+        if 'servingSize' in item:
+            food['servingSize'] = round(item['servingSize'])
+        if 'foodNutrients' in item:
+            food['nutrients'] = item['foodNutrients']
+        foodObjects.append(food)
+
+        
     return render (request, 'nutritionTracker/addmeal.html', { "foodResults": 
-    myResults})
+    foodObjects})
 
+def logFood(request):
+    return render (request, 'nutritionTracker/logFood.html')
