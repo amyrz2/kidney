@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% block title %} Log Food {% endblock %}
+{% block link %}<link rel="stylesheet" href="../../static/css/addmeal.css" media="screen">{% endblock %}
+
+{% block include %}
+{% include 'partials/postnav.html' %}
+{% endblock %}
+
+{% block content %}
+
+
+<h3>Select Item</h3>
+<form name='searchAPI' method='post' action='/searchAPI/'>
+    {% csrf_token %}
+    <input type='text' name='searchQuery'>
+    <button type='submit'>Search</button><br>
+    {% if i %}
+        <select name='selectedFood'>
+            {%for i in foodResults%}
+                <option> {{i.description}}, {{i.brandName}} {{i.servingSize}}{{i.servingUnit}}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+</form>
+
+{% comment %} <form name="form" method="post">
+    <input type='text' id='foodItem'>
+    <label for='first_name'>Enter the Item:</label>
+    <input type="text" name='first_name' id='first_name'>
+    <br><br>
+    <label for='last_name'>Enter the amount:</label>
+    <input type="text" name='last_name' id='last_name'>
+    <br><br>
+    <button type="submit">Add</button>
+</form> {% endcomment %}
+<br>
+
+{% endblock %}
