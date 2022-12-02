@@ -3,6 +3,10 @@
 {% block link %} <link rel="stylesheet" href="../../static/css/index.css" media="screen"> {% endblock %}
 {% comment %} Make If statement: if login then prelogin/base.html else postlogin/base.html {% endcomment %}
 
+{% block include %}
+{% include 'partials/prenav.html' %}
+{% endblock %}
+
 {% block content %}
 
 <section class="u-clearfix u-custom-color-5 u-section-1" id="sec-3e54">
